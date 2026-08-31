@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v20260830-113209'; // auto-injected at build time
+const CACHE_VERSION = 'v20260831-040002'; // auto-injected at build time
 const CACHE_NAME = 'dwdr-cache-' + CACHE_VERSION;
 const ASSETS = [
   './',
