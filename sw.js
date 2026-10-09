@@ -1,17 +1,9 @@
-const CACHE_VERSION = 'v20260929-112825'; // auto-injected at build time
+const CACHE_VERSION = 'v20261009-074121'; // auto-injected at build time
 const CACHE_NAME = 'dwdr-cache-' + CACHE_VERSION;
-const ASSETS = [
-  './',
-  './index.html',
-  './manifest.json',
-  './icon-192.png',
-  './icon-512.png',
-];
+const ASSETS = ['./', './index.html', './manifest.json', './icon-192.png', './icon-512.png'];
 
 self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS))
-  );
+  event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS)));
   self.skipWaiting();
 });
 
@@ -25,12 +17,9 @@ self.addEventListener('activate', (event) => {
 });
 
 // Network-first for the app shell (HTML) so updates show up immediately when online.
-// Falls back to cache only when offline. Other assets (icons, manifest) are cache-first
-// since they rarely change.
 self.addEventListener('fetch', (event) => {
   const isHTML = event.request.mode === 'navigate' ||
     (event.request.headers.get('accept') || '').includes('text/html');
-
   if (isHTML) {
     event.respondWith(
       fetch(event.request)
@@ -42,7 +31,6 @@ self.addEventListener('fetch', (event) => {
     );
     return;
   }
-
   event.respondWith(
     caches.match(event.request).then((cached) => {
       if (cached) return cached;
