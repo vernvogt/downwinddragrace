@@ -168,6 +168,12 @@
     background:rgba(224,143,192,0.12); vertical-align:middle;
   }
   a.ig-link:hover{background:rgba(224,143,192,0.24);}
+  a.ig-cta{
+    display:block; margin-top:10px; padding:7px 10px; text-align:center;
+    font-size:12px; font-weight:600; color:var(--s2); text-decoration:none;
+    background:rgba(224,143,192,0.12); border-radius:8px;
+  }
+  a.ig-cta:hover{background:rgba(224,143,192,0.24);}
   .pos-pill{
     display:inline-block; min-width:30px; text-align:center;
     font-family:'JetBrains Mono',monospace; font-weight:700; font-size:12px;
@@ -1324,7 +1330,7 @@ const RACE_DATA = [
   "position": "S2-29",
   "year_position": "S2-9",
   "age_cat_position": "9",
-  "instagram_link": null
+  "instagram_link": "https://www.instagram.com/p/DfwSiMKADes/?img_index=1"
  },
  {
   "name": "Hamish Lovemore & Jeremy Maher",
@@ -5910,9 +5916,10 @@ const RACE_DATA = [
     card.innerHTML =
       '<span class="badge ' + (r.division==='S2'?'s2':'s1') + '">' + (r.division==='S2' ? ((r.age_cat_position||'').replace(/\s/g,'').startsWith('X2') ? 'S2 MIXED (X2)' : 'S2 DOUBLES') : 'S1 SOLO') + '</span>' +
       '<div class="time">' + r.time + '</div>' +
-      '<div class="name">' + escapeHtml(r.name) + (r.instagram_link ? ' <a class="ig-link" href="' + r.instagram_link + '" target="_blank" rel="noopener">IG ↗</a>' : '') + '</div>' +
+      '<div class="name">' + escapeHtml(r.name) + '</div>' +
       '<div class="meta"><a class="maps-link" href="' + mapsUrl(r.location) + '" target="_blank" rel="noopener">' + escapeHtml(r.location) + '</a><br>' + fmtDate(r.date) + ' · ' + escapeHtml(r.country) + '</div>' +
-      (r.make ? '<div class="make">' + escapeHtml(r.make) + '</div>' : '');
+      (r.make ? '<div class="make">' + escapeHtml(r.make) + '</div>' : '') +
+      (r.instagram_link ? '<a class="ig-cta" href="' + r.instagram_link + '" target="_blank" rel="noopener">View on Instagram ↗</a>' : '');
     scroller.appendChild(card);
   });
 
